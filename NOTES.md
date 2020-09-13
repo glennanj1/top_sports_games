@@ -10,7 +10,6 @@ This project is a command line interface that will scrape a web page to show the
 
 What is a game?
 
-a game has a name
+a game has teams
 a game has a date
-a game has a score
 a game has odds

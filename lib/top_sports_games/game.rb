@@ -3,13 +3,21 @@ class TopSportsGames::Game
 
     def self.today
         # Scrape Odds Portal return games and subsequent info
-        game_1 = self.new
-        game_1.name = "O. Ljubljana - Mura"
-        game_1.total = "2.5"
-        game_1.date = "09/16"
-        game_1.url = "https://www.oddsportal.com/sure-bets/"
+        # TopSportsGames::GameScraper.new("https://www.oddsportal.com/sure-bets/")
+        self.scrape_games
+    end
 
-        [game_1]
+    def self.scrape_games
+        games = []
+
+        
+        #go to site, find the games
+        #extract properties
+        #instantiate a deal
+
+        #go to site
+
+        games
     end
 
 
