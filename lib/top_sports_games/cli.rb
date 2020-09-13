@@ -22,7 +22,8 @@ class TopSportsGames::CLI
             input = gets.strip.downcase
 
             if input.to_i > 0 
-                puts @games[input.to_i-1]
+                the_game = @games[input.to_i-1]
+                puts "#{game.name}"
             elsif input == "list"
                 list_games
             else
