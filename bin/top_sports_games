@@ -2,4 +2,5 @@
 
 require './lib/top_sports_games'
 
+
 TopSportsGames::CLI.new.call
