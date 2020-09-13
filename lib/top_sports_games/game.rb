@@ -10,6 +10,7 @@ class TopSportsGames::Game
     def self.scrape_games
         games = []
 
+        games << self.scrape_site
         
         #go to site, find the games
         #extract properties
@@ -20,5 +21,9 @@ class TopSportsGames::Game
         games
     end
 
+    def self.scrape_site
+        doc = Nokogiri::HTML(open("https://www.oddsportal.com/sure-bets/"))
+        binding.pry
+    end
 
 end
