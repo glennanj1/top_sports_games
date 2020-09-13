@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 
-require './lib/top_sports_games'
-
+require "./lib/top_sports_games"
 
 TopSportsGames::CLI.new.call
