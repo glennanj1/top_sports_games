@@ -1,5 +1,5 @@
 class TopSportsGames::Game 
-    attr_accessor :away, :home, :total, :date, :url
+    attr_accessor :away, :home, :total, :date, :url, :games
 
     def self.today
         # Scrape Odds Portal return games and subsequent info
@@ -8,9 +8,9 @@ class TopSportsGames::Game
     end
 
     def self.scrape_games
-        games = []
+        @games = []
 
-        games << self.scrape_site
+        @games << self.scrape_site
         
         #go to site, find the games
         #extract properties
@@ -18,24 +18,33 @@ class TopSportsGames::Game
 
         #go to site
 
-        games
+        @games
     end
 
     def self.scrape_site
         doc = Nokogiri::HTML(open("https://www.oddsshark.com/nfl/computer-picks"))
-        binding.pry
-
+        # away = doc.css('span.name.table__name-away tooltip').text
+        # home = doc.css('span.name.table__name-home tooltip').text
         
 
+        teams = doc.css('div.picks-card').each do |team|
+            # away = doc.css('span.name.table__name-away.tooltip').text
+            # home = doc.css('span.name.table__name-home.tooltip').text
+            matchup = { 
+                        away: team.css('span.attr(table__name-away.tooltip').text,
+                        home: team.css('span.name.table__name-home.tooltip').text
 
-        game = self.new
-        game.away = doc.css('span.name.table__name-away.tooltip').text
-        game.home = doc.css('span.name.table__name-home.tooltip').text
-        game.total = doc.css('td.pick-computer-pick-total-label.cell-a').text
-        game.date = doc.css('div.pick-date').text
-        game
+                    }
+            
+            binding.pry
 
+
+        end
+        
+        
+        
     end
 
 end
+
 

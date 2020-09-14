@@ -3,7 +3,6 @@ class TopSportsGames::CLI
 
     def call 
         puts "Welcome to the Top Sports Games CLI!"
-        TopSportsGames::Game.scrape_site
         list_games
         menu
         goodbye
@@ -13,7 +12,7 @@ class TopSportsGames::CLI
         puts "Today's Top Sports Games:"
         @games = TopSportsGames::Game.today
         @games.each.with_index(1) do |game, i|
-            puts "#{i}, #{game.away} vs. #{game.home} at #{game.date}" 
+            puts "#{i}, #{game}" 
             
         end
     end
