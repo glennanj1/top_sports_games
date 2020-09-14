@@ -22,8 +22,14 @@ class TopSportsGames::Game
     end
 
     def self.scrape_site
-        doc = Nokogiri::HTML(open("https://www.oddsportal.com/sure-bets/"))
+        doc = Nokogiri::HTML(open("https://www.oddsshark.com/nfl/computer-picks"))
+        
+        
+    
+        
+        
         binding.pry
     end
 
 end
+
