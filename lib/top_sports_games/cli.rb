@@ -22,23 +22,29 @@ class TopSportsGames::CLI
         while input != "exit"
             puts "Enter the number of the game you would like more information on or type exit"
             input = gets.chomp
-            if !input.to_i.between?(1, Game.all.count)
-                puts "Game not found. Please select a different game!"
+
+
+            if input.to_i > 0
+                the_game = @games[input.to_i-1]
+                puts "#{the_game}"
+            elsif input == "list"
                 list_games
-                menu
+                
             else
-                game = Game.all[input.to_i-1]
+                puts "Please enter list or exit"
             end
-            puts "Would you like to see another game?"
-            puts "Please enter Y or N"
-            if another_game == "y"
-                list_games
-                menu
-            else
-                puts "Please try again."
-                list_games
-                menu
-            end
+
+            # puts "Would you like to see another game?"
+            # puts "Please enter Y or N"
+            # if another_game == "y"
+            #     list_games
+            #     menu
+            # else
+            #     puts "Please try again."
+            #     list_games
+            #     menu
+            # end
+
 
         end
 
@@ -46,17 +52,18 @@ class TopSportsGames::CLI
     end
         
     
-    def display_game_details(game)
-        Game.scrape_sit(game)
-        puts "Here are the details for #{character.name}:"
-        puts "#{game.date}"
-        puts "#{game.home}"
-        puts "#{game.away}"
-        puts "#{game.total}"
-    end
+    # def display_game_details(game)
+    #     Game.scrape_sit(game)
+    #     puts "Here are the details for #{game}:"
+    #     puts "#{game.date}"
+    #     puts "#{game.home}"
+    #     puts "#{game.away}"
+    #     puts "#{game.total}"
+    # end
 
 
     def goodbye
         puts "See you tomorrow for more games."
-    end 
+    
+    end
 end

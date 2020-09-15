@@ -1,5 +1,5 @@
 class TopSportsGames::Game 
-    attr_accessor :away, :home, :total, :date, :url, :games
+    attr_accessor :teams 
 
     def self.today
         # Scrape Odds Portal return games and subsequent info
@@ -27,19 +27,24 @@ class TopSportsGames::Game
         # home = doc.css('span.name.table__name-home tooltip').text
         
 
-        teams = doc.css('div.picks-card').each do |team|
+        teams = doc.css('#div picks-card').each do |team|
             # away = doc.css('span.name.table__name-away.tooltip').text
             # home = doc.css('span.name.table__name-home.tooltip').text
             matchup = { 
                         away: team.css('span.attr(table__name-away.tooltip').text,
-                        home: team.css('span.name.table__name-home.tooltip').text
+                        home: team.css('span.name.table__name-home.tooltip').text,
+
+
 
                     }
+
+
+           
             
-            binding.pry
 
-
+        matchup
         end
+        
         
         
         

@@ -1,4 +1,5 @@
-#!/usr/bin/env ruby
+#!/usr/bin/env ruby 
+#shbang - cli controller
 
 require "bundler/setup"
 require "top_sports_games"
