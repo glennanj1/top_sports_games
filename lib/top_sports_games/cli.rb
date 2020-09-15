@@ -26,7 +26,7 @@ class TopSportsGames::CLI
 
             if input.to_i > 0
                 the_game = @games[input.to_i-1]
-                puts "#{the_game}"
+                puts "#{the_game.away} #{the_game.home}, with a total over/under - #{the_game.total}"
             elsif input == "list"
                 list_games
                 
