@@ -1,5 +1,6 @@
 class TopSportsGames::Game 
     attr_accessor :away, :home, :total
+    
 
     def self.today
         # Scrape Odds Portal return games and subsequent info
@@ -25,14 +26,15 @@ class TopSportsGames::Game
         doc = Nokogiri::HTML(open("https://www.oddsshark.com/nfl/computer-picks"))
 
         game = self.new
-        game.away = doc.css("span.name.table__name-away.tooltip").text
-        game.home = doc.css("span.name.table__name-home.tooltip").text
-        game.total = doc.css("pick-computer-pick-total-label.cell-a").text
+        
+        game.away = doc.search("span.name.table__name-away.tooltip").text.strip
+        
+        game.home = doc.search("span.name.table__name-home.tooltip").text.strip
+        
+        game.total = doc.search("td.pick-computer-pick-total-label.cell-a").text.strip
 
         game
         
-        
-        
-        
     end
+
 end
