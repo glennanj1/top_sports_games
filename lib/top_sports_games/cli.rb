@@ -1,71 +1,62 @@
-class TopSportsGames::CLI
-
-    
-
+class CLI
 
     def call 
         puts "Welcome to the Top Sports Games CLI!"
-        list_games
-        menu
-        goodbye
+        puts "Today's Top Sports Games:"
+        Scraper.scrape_games
+        show_games
+        options
+        
     end
 
-    def list_games
-        puts "Today's Top Sports Games:"
-        @games = TopSportsGames::Game.today
-        @games.each.with_index(1) do |game, i|
-            puts "#{i}, #{game}" 
+    def show_games
+        Game.all.each.with_index(1) do | game, i |
+            puts "#{i}. #{game.matchup}"
+        end
+
+    end
+
+    def options
+        puts "Please select a number to get more information on an event."
+        input = gets.chomp
+        if !input.to_i.between?(1, Game.all.count)
+            puts "Game not found. Please select a different game!"
+            show_games
+            options
+        else
+            game = Game.all[input.to_i-1]
+            display_game_details(game)
+        end
+        puts "Would you like to see another game?"
+        puts "Please enter Y or N"
+        another_game = gets.strip.downcase
+        if another_game == "y"
+            list_games
+            menu
+        elsif another_game == "n"
+            puts "Thanks for scraping!"
+            exit
             
         end
-    end
-
-    def menu
-        input = nil
-        while input != "exit"
-            puts "Enter the number of the game you would like more information on or type exit"
-            input = gets.chomp
-
-
-            if input.to_i > 0
-                the_game = @games[input.to_i-1]
-                puts "#{the_game.away} #{the_game.home}, with a total over/under - #{the_game.total}"
-            elsif input == "list"
-                list_games
-                
-            else
-                puts "Please enter list or exit"
-            end
-
-            # puts "Would you like to see another game?"
-            # puts "Please enter Y or N"
-            # if another_game == "y"
-            #     list_games
-            #     menu
-            # else
-            #     puts "Please try again."
-            #     list_games
-            #     menu
-            # end
-
-
-        end
-
 
     end
         
     
-    # def display_game_details(game)
-    #     Game.scrape_sit(game)
-    #     puts "Here are the details for #{game}:"
-    #     puts "#{game.date}"
-    #     puts "#{game.home}"
-    #     puts "#{game.away}"
-    #     puts "#{game.total}"
-    # end
+    def display_game_details(game)
 
+        Scraper.scrape_details(game)
 
-    def goodbye
-        puts "See you tomorrow for more games."
-    
+        puts "Here are the teams for your selected matchup :#{game.team}"
+        
+        # puts "Here are the details for #{game}"
+        puts "#{game.odds}"
+        puts "#{game.team}"
+        puts "#{game.date}"
+        # puts "#{game.total}"
+        
     end
+
+
 end
+
+

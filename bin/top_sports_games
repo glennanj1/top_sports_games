@@ -3,4 +3,4 @@
 require "bundler/setup"
 require "top_sports_games"
 
-TopSportsGames::CLI.new.call
+CLI.new.call
