@@ -5,8 +5,7 @@ class CLI
         puts "Today's Top Sports Games:"
         Scraper.scrape_games
         show_games
-        options
-        
+        options  
     end
 
     def show_games
@@ -31,32 +30,16 @@ class CLI
         puts "Please enter Y or N"
         another_game = gets.strip.downcase
         if another_game == "y"
-            list_games
-            menu
+            show_games
+            options
         elsif another_game == "n"
-            puts "Thanks for scraping!"
+            puts "Thanks for using my CLI!"
             exit
-            
         end
-
     end
         
-    
     def display_game_details(game)
-
-        Scraper.scrape_details(game)
-
-        puts "Here are the teams for your selected matchup :#{game.team}"
-        
-        # puts "Here are the details for #{game}"
-        puts "#{game.odds}"
-        puts "#{game.team}"
-        puts "#{game.date}"
-        # puts "#{game.total}"
-        
+        puts "Here are the details for #{game.matchup}"
+        puts "Game odds:#{game.odds}" 
     end
-
-
 end
-
-
