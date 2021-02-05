@@ -39,7 +39,11 @@ class CLI
     end
         
     def display_game_details(game)
-        puts "Here are the details for #{game.matchup}"
-        puts "Game odds:#{game.odds}" 
+        if game.odds == ""
+            puts "This game already happened"
+        else
+            puts "Here are the details for #{game.matchup}"
+            puts "Game odds:#{game.odds}" 
+        end
     end
 end

@@ -13,6 +13,7 @@ class Scraper
             matchup = games.css(".cmg_matchup_header_team_names").text.strip
             url = games.css('a').attr('href').value
             odds = games.css("div.cmg_team_odds").css('span').text
+            
                     
             Game.new(matchup, url, odds)
 
